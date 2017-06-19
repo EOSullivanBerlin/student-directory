@@ -4,6 +4,6 @@ The student directory script allows you to compare the list of students enrolled
 
 ## How to use ##
 
-shell
-ruby directory.rb
+```shell
+ruby directory.rb```
 
