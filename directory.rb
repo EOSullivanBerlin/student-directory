@@ -1,3 +1,4 @@
+# first list of students
 puts "The students of Villains Academy"
 puts "-----------------"
 puts "Dr. Hannibal Lecter"
@@ -10,3 +11,10 @@ puts "Therminator"
 puts "The Joker"
 puts "Joffery Bartheon"
 puts "Norman Bates"
+print "Overall, we have "
+print 11
+puts " great students"
+
+
+
+
