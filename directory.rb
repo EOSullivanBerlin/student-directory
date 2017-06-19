@@ -2,16 +2,16 @@ student_count = 11
 # first list of students
 
  students = [
- "Dr. Hannibal Lecter",
- "Darth Vader",
- "Nurse Ratched",
- "Michael Corleone",
- "Alex DeLarge",
- "The Wicked Wich of the West",
- "Therminator",
- "The Joker",
- "Joffery Bartheon",
- "Norman Bates"
+ {name: "Dr. Hannibal Lecter", cohort: :november},
+ {name: "Darth Vader", cohort: :november},
+ {name: "Nurse Ratched", cohort: :november},
+ {name: "Michael Corleone", cohort: :november},
+ {name: "Alex DeLarge", cohort: :november},
+ {name: "The Wicked Wich of the West", cohort: :november},
+ {name: "Therminator", cohort: :november}, 
+ {name: "The Joker", cohort: :november},
+ {name: "Joffery Bartheon", cohort: :november},
+ {name: "Norman Bates", cohort: :november}
 ]
 
 
@@ -20,13 +20,13 @@ def print_header
     puts "-----------------"
 end
 
-def print_students
+def print(students)
     students.each do |student|
-        puts student
+        puts "#{student[:name]} (#{student[:cohort]} cohort)"
     end
 end
 
-def print_footer
+def print_footer(students)
 puts "Overall, we have #{students.count} great students"
 end
 
