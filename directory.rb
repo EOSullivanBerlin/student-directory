@@ -1,19 +1,25 @@
 
 def print_header
-    puts "The students of Villains Academy"
-    puts "-----------------"
+    titel = "The students of Villains Academy"
+    under_titel = "-----------------"
+    puts titel.center(100)
+    puts under_titel.center(100)
 end
 
 def print(students)
     
     students.each_with_index do |student, index|
-        puts "#{index + 1}. #{student[:name]}, From: #{student[:country]}, Hobbie: #{student[:hobbie]} (#{student[:cohort]} cohort)" if student[:name].length < 12
+        puts "#{index + 1}. #{student[:name]}, From: #{student[:country]}, Hobbie: #{student[:hobbie]} (#{student[:cohort]} cohort)".center(100) if student[:name].length < 12
    
     end
 end
 
 def print_footer(students)
-puts "Overall, we have #{students.count} great students"
+    if students.count.to_i == 1
+        puts "Overall, we have #{students.count} great student".center(100)
+   else
+        puts "We have #{students.count} great students".center(100)
+    end
 end
 
 #nothing happens until we call the methods
