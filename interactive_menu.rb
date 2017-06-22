@@ -1,3 +1,4 @@
+@students =[] # ==> Every method now has acess to this array
 
 def print_header
     titel = "The students of Villains Academy"
@@ -6,19 +7,19 @@ def print_header
     puts under_titel.center(100)
 end
 
-def print(students)
+def print_students_list
     
-    students.each_with_index do |student, index|
+    @students.each_with_index do |student, index|
         puts "#{index + 1}. #{student[:name]}, From: #{student[:country]}, Hobbie: #{student[:hobbie]} (#{student[:cohort]} cohort)".center(100) if student[:name].length < 12
    
     end
 end
 
-def print_footer(students)
-    if students.count.to_i == 1
-        puts "Overall, we have #{students.count} great student".center(100)
+def print_footer
+    if @students.count.to_i == 1
+        puts "Overall, we have #{@students.count} great student".center(100)
    else
-        puts "We have #{students.count} great students".center(100)
+        puts "We have #{@students.count} great students".center(100)
     end
 end
 
@@ -26,9 +27,6 @@ end
 
 
 def input_students
-    students = []
-
-  
     # the prock will ask you to "Please enter the #{argument}"
     # call the prock
     puts "Please enter the names, country of birth and hobbies of each student"
@@ -52,7 +50,7 @@ def input_students
         if cohort.empty?
             cohort = "Unspecified".to_sym
         end
-        students << {name: name, cohort: cohort, country: birth, hobbie: hobbie}
+        @students << {name: name, cohort: cohort, country: birth, hobbie: hobbie}
         
         puts "Please enter the next students details starting with their name"
         name = gets.chomp
@@ -62,12 +60,12 @@ def input_students
         birth = gets.chomp
         puts "Add the students hobbie"
         hobbie = gets.chomp
-        puts "Now we have #{students.count} students"
+        puts "Now we have #{@students.count} students"
         #get another name from the user
         
     end
     # return the array of students
-    students
+    @students
 end
 
 def option_edit(students)
@@ -116,34 +114,44 @@ def option_edit(students)
     end
     end
 end
+
 def interactive_menu
-    students =[]
+    
     loop do
-        puts "1. Input the students"
-        puts "2. Show the students"
-        puts "9. Exit"
+        print_menu
+        process_selection
+        
+    end
+end
+
+def print_menu
+     puts "1. Input the students"
+     puts "2. Show the students"
+     puts "9. Exit"
+end
+
+def process_selection
         selection = gets.chomp
-        # 1. print the menu and ask the user what to do
         case selection
         # 2. Read the input and save it to a variable
         # 3. Do what the user has asked
             when "1"
-                students = input_students
+                input_students
             when  "2"
-                print_header
-                print(students)
-                print_footer(students)
-                
+                show_students
         # 4. Repeat from step one
             when "9"
                 exit
             else
                 puts "I don't know what you meant, try again"
-        end
-        
+                
+            end
+end
 
-        
-    end
+def show_students
+     print_header
+     print_students_list
+     print_footer
 end
 
 interactive_menu
