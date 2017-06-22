@@ -39,7 +39,7 @@ def input_students
     #get the first name
      name = gets.chomp
         puts "Please enter the students cohort"
-        cohort = gets.chomp
+        cohort = gets.rstrip
         puts "Add the students country of birth"
         birth = gets.chomp
         puts "Add the students hobbie"
