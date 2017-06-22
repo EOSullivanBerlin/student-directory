@@ -120,6 +120,8 @@ end
 
 students = input_students
 print_header
+if students.count >= 1
 print(students)
+end
 print_footer(students)
 option_edit(students)
