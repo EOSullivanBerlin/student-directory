@@ -2,7 +2,10 @@
 
 def save_students
     #open the file for writing
-    file = File.open("students.csv", "w")
+    puts "What is the name of the file where you would like to save you file?"
+    puts "We would recomend students.csv"
+    filename = STDIN.gets.chomp
+    file = File.open(filename, "w")
     #iterate over the array of students
     @students.each do |student|
         student_data = [student[:name], student[:cohort]]
@@ -175,7 +178,7 @@ def process_selection
         # 3. Do what the user has asked
             when "1"
                 input_students
-            when  "2"
+            when "2"
                 show_students
             when "3"
                 save_students
@@ -195,6 +198,7 @@ def show_students
      print_students_list
      print_footer
 end
+
 try_load_students
 interactive_menu
 =begin
