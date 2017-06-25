@@ -12,8 +12,22 @@ def save_students
     file.close
 end
 
-def load_students
-   file = File.open("students.csv", "r")
+def try_load_students
+    filename = ARGV.first
+    return if filename.nil?
+    
+    if File.exists?(filename)
+        load_students(filename)
+        puts "Loaded #{@students.count} from #{filename}"
+    else 
+        puts "Sorry, #{filename} doesn't exsit."
+        exit
+    end
+end
+
+
+def load_students(filename = "students.csv")
+    file = File.open(filename, "r")
     file.readlines.each do |line|
        name, cohort = line.chomp.split(',')
        @students << {name: name, cohort: cohort.to_sym}
@@ -57,13 +71,13 @@ def input_students
     # create an empty array
     
     #get the first name
-     name = gets.chomp
+     name = STDIN.gets.chomp
         puts "Please enter the students cohort"
-        cohort = gets.rstrip
+        cohort = STDIN.gets.rstrip
         puts "Add the students country of birth"
-        birth = gets.chomp
+        birth = STDIN.gets.chomp
         puts "Add the students hobbie"
-        hobbie = gets.chomp
+        hobbie = STDIN.gets.chomp
         
     
     #while the name is not empty, repeat this code
@@ -75,13 +89,13 @@ def input_students
         @students << {name: name, cohort: cohort, country: birth, hobbie: hobbie}
         
         puts "Please enter the next students details starting with their name"
-        name = gets.chomp
+        name = STDIN.gets.chomp
         puts "Please enter the students cohort"
-        cohort = gets.chomp.to_sym
+        cohort = STDIN.gets.chomp.to_sym
         puts "Add the students country of birth"
-        birth = gets.chomp
+        birth = STDIN.gets.chomp
         puts "Add the students hobbie"
-        hobbie = gets.chomp
+        hobbie = STDIN.gets.chomp
         puts "Now we have #{@students.count} students"
         #get another name from the user
         
@@ -155,7 +169,7 @@ def print_menu
 end
 
 def process_selection
-        selection = gets.chomp
+        selection = STDIN.gets.chomp
         case selection
         # 2. Read the input and save it to a variable
         # 3. Do what the user has asked
@@ -181,7 +195,7 @@ def show_students
      print_students_list
      print_footer
 end
-
+try_load_students
 interactive_menu
 =begin
 students = input_students
