@@ -1,3 +1,4 @@
+require 'csv'
 @students = [] # ==> Every method now has acess to this array
 
 def save_students
@@ -30,12 +31,12 @@ end
 
 
 def load_students(filename = "students.csv")
-    file = File.open(filename, "r")
-    file.readlines.each do |line|
-       name, cohort = line.chomp.split(',')
+     CSV.foreach(filename) do |row|
+      name, cohort = row[0], row[1]
+
        @students << {name: name, cohort: cohort.to_sym}
     end
-    file.close
+    
     
 end
 
