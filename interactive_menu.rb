@@ -6,14 +6,13 @@ def save_students
     puts "What is the name of the file where you would like to save you file?"
     puts "We would recomend students.csv"
     filename = STDIN.gets.chomp
-    file = File.open(filename, "w")
     #iterate over the array of students
     @students.each do |student|
         student_data = [student[:name], student[:cohort]]
         csv_line = student_data.join(",")
-        file.puts csv_line
+        File.open(filename, "w") { |f| f.write csv_line}
     end
-    file.close
+    
 end
 
 def try_load_students
@@ -33,7 +32,6 @@ end
 def load_students(filename = "students.csv")
      CSV.foreach(filename) do |row|
       name, cohort = row[0], row[1]
-
        @students << {name: name, cohort: cohort.to_sym}
     end
     
