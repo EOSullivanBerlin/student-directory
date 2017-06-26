@@ -10,9 +10,12 @@ def save_students
     @students.each do |student|
         student_data = [student[:name], student[:cohort]]
         csv_line = student_data.join(",")
-        File.open(filename, "w") { |f| f.write csv_line}
+        File.open(filename, "w") do |f|  
+                                        f.write csv_line
+                                        
+                                    end
     end
-    
+    puts "File saved"
 end
 
 def try_load_students
@@ -35,7 +38,7 @@ def load_students(filename = "students.csv")
        @students << {name: name, cohort: cohort.to_sym}
     end
     
-    
+    puts "File loaded"
 end
 
 def print_header
